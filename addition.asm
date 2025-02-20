@@ -31,50 +31,50 @@ _start:
 
     ; Ask for the second number
     mov rax, 1              ; syscall: write
-    mov rdi, 1		    ; file descriptor: stdout
+    mov rdi, 1		        ; file descriptor: stdout
     mov rsi, prompt2	    ; pointer to second prompt
     mov rdx, prompt2_len    ; length of the message
     syscall
 
     ; Read the second number
     mov rax, 0              ; syscall: read
-    mov rdi, 0		    ; file descriptor: stdin
+    mov rdi, 0		        ; file descriptor: stdin
     mov rsi, input2   	    ; buffer to store input
-    mov rdx, 10		    ; max bytes to read
+    mov rdx, 10		        ; max bytes to read
     syscall
 
     ; Convert first input from ASCII to integer
-    mov rsi, input1	    ; move input to rsi register
-    call atoi  		    ; call the function
+    mov rsi, input1	        ; move input to rsi register
+    call atoi  		        ; call the function
     mov rbx, rax            ; store first number in rbx
 
     ; Convert second input from ASCII to integer
-    mov rsi, input2	    ; move input to rsi register
-    call atoi      	    ; call the function
+    mov rsi, input2	        ; move input to rsi register
+    call atoi      	        ; call the function
     add rax, rbx            ; add the two numbers
 
     ; Clear the buffer before using it
-    mov rdi, buffer	    ; Move buffer to rdi
-    mov rcx, 10		    ; Make the loop 10 times
+    mov rdi, buffer	        ; Move buffer to rdi
+    mov rcx, 10		        ; Make the loop 10 times
 clear_buffer:
     mov byte [rdi], 0       ; Clear buffer by writing 0
-    inc rdi	            ; Adds 1 to the register
+    inc rdi	                ; Adds 1 to the register
     loop clear_buffer	    ; For looping 10 times
 
     ; Convert the result back to a string
-    mov rsi, buffer	    ; Move buffer to rsi
+    mov rsi, buffer	        ; Move buffer to rsi
     call itoa	    	    ; Call the function
 
     ; Print the result
-    mov rax, 1		    ; syscall: write
-    mov rdi, 1		    ; file descriptor: stdout
+    mov rax, 1		        ; syscall: write
+    mov rdi, 1		        ; file descriptor: stdout
     mov rsi, result_msg     ; pointer to the result message
     mov rdx, result_msg_len ; length of the message
     syscall
 
-    mov rax, 1		    ; syscall: write
-    mov rdi, 1		    ; file descriptor: stdout
-    mov rsi, buffer	    ; pointer to the actual result
+    mov rax, 1		        ; syscall: write
+    mov rdi, 1		        ; file descriptor: stdout
+    mov rsi, buffer	        ; pointer to the actual result
     mov rdx, 10             ; max bytes to write
     syscall
 
@@ -95,9 +95,9 @@ atoi_loop:
     imul rax, rax, 10       ; Multiply current result by 10 (Shift digits left e.g. 3 * 10 = 30)
     add rax, rdx            ; Add the current digit to the result 
     inc rsi                 ; Move to the next character in the input string
-    jmp atoi_loop	    ; Repeat the loop
+    jmp atoi_loop	        ; Repeat the loop
 atoi_done:
-    ret			    ; Return from the function
+    ret			            ; Return from the function
 
 ; Function: itoa (Convert integer to ASCII)
 itoa:
@@ -112,7 +112,7 @@ itoa_loop:
     test rax, rax           ; Check if quotient is 0
     jnz itoa_loop           ; Repeat if not 0
     mov byte [rsi - 1], 0   ; Add null terminator
-    ret			    ; Return from the function
+    ret			            ; Return from the function
 
 
 
