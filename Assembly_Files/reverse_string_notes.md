@@ -14,7 +14,7 @@ Binary "0100 0001" is "65"\
 "130 / 2" is also "65", Wow...Pretty cool right?
 <br/>
 
-4. How does [input_buffer] have our reversed string? But we don't move the string to "input_buffer".\
+3. How does [input_buffer] have our reversed string? But we don't move the string to "input_buffer".\
 	It's because in this instruction ``` lea rsi, [input_buffer] ``` , rsi now holds the **ADDRESS** of the buffer **NOT** it's content. So in this instructions:
 ```
 reverse_loop:
