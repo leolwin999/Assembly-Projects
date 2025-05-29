@@ -11,9 +11,9 @@
 	Let's say rcx is "130", so in binary format it's
 > 1000 0010
 	Now shift the bits to right
->  0100 0001
-	Binary **0100 0001** is **65**
-	**130 / 2** is also **65**, Wow...Pretty cool right?
+> 0100 0001
+	Binary ""0100 0001"" is ""65""
+""130 / 2"" is also ""65"", Wow...Pretty cool right?
 <br/>
 <br/>
 3. How does [input_buffer] has our reversed string? But we don't move the string to "input_buffer"\
