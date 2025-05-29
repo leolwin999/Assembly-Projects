@@ -7,16 +7,14 @@
 	We got Final Result : DNEIRF
 <br/>
 <br/>
-2. shr rcx, 1 (Shift Right) means divided by 2, But how?
-	Let's say rcx is "130", so in binary format it's
-> 1000 0010
-	Now shift the bits to right
-> 0100 0001
-	Binary ""0100 0001"" is ""65""
-""130 / 2"" is also ""65"", Wow...Pretty cool right?
+2. shr rcx, 1 (Shift Right) means divided by 2, But how?\
+Let's say rcx is "130", so in binary format it's "1000 0010"\
+Now shift the bits to right 0**1**00 000**1**\
+Binary "0100 0001" is "65"\
+"130 / 2" is also "65", Wow...Pretty cool right?
 <br/>
 <br/>
-3. How does [input_buffer] has our reversed string? But we don't move the string to "input_buffer"\
+4. How does [input_buffer] has our reversed string? But we don't move the string to "input_buffer"\
 	It's because in this instruction ``` lea rsi, [input_buffer] ``` rsi now holds the **ADDRESS** of the buffer not it's content. So in this instructions:\
 ```
 	reverse_loop:
