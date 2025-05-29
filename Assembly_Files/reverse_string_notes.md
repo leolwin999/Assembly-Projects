@@ -7,7 +7,7 @@
 	We got Final Result : DNEIRF
 <br/>
 <br/>
-2. shr rcx, 1 (Shift Right) means divided by 2, But how?\
+2. shr rcx, 1 (Shift Right) means divided by 2, But how? \
 Let's say rcx is "130", so in binary format it's "1000 0010"\
 Now shift the bits to right 0**1**00 000**1**\
 Binary "0100 0001" is "65"\
