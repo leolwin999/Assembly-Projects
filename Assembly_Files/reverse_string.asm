@@ -32,7 +32,7 @@ _start:
         mov rdi, STDOUT                                 ; Stdout
         lea rsi, [prompt_msg]                           ; Message to write
         mov rdx, prompt_msg_len                         ; Message length
-        syscall                                         ; Call kernal
+        syscall                                         ; Call kernel
 
 
         ; Read user input
@@ -40,7 +40,7 @@ _start:
         mov rdi, STDIN                                  ; Stdin
         lea rsi, [input_buffer]                         ; Buffer to store the input
         mov rdx, BUFFER_SIZE -1                         ; Max bytes to read 
-        syscall                                         ; Call kernal
+        syscall                                         ; Call kernel
 
 
 
@@ -87,7 +87,7 @@ _print_reversed_prefix:
         mov rdi, STDOUT                                 ; Stdout
         lea rsi, [reversed_msg]                         ; Message
         mov rdx, reversed_msg_len                       ; Length of the message
-        syscall                                         ; Call kernal
+        syscall                                         ; Call kernel
 
 
         ; Print the reversed string
@@ -95,7 +95,7 @@ _print_reversed_prefix:
         mov rdi, STDOUT                                 ; Stdout
         lea rsi, [input_buffer]                         ; Reversed string which is now in buffer
         mov rdx, r10                                    ; Length of the reversed string
-        syscall                                         ; Call kernal
+        syscall                                         ; Call kernel
 
 
         ; Print a newline character
@@ -103,11 +103,11 @@ _print_reversed_prefix:
         mov rdi, STDOUT                                 ; Stdout
         lea rsi, [newline_char]                         ; Newline character
         mov rdx, newline_char_len                       ; Newline character length
-        syscall                                         ; Call kernal
+        syscall                                         ; Call kernel
 
 
 _exit_program:
         mov rax, SYS_EXIT                               ; syscall for exit
         xor rdi, rdi                                    ; exit code 0 
-        syscall                                         ; Call kernal
+        syscall                                         ; Call kernel
 
