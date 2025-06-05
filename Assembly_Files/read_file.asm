@@ -108,4 +108,4 @@ _exit:
 _exit_error:
         mov rax, 60                                             ; Syscall for exit
         mov rdi, 1                                              ; Exit Code 1 (error)
-        syscall
+        syscall                                                 ; Call kernel
