@@ -155,5 +155,5 @@ _read_error:
 
 _exit:
         mov rax, 60                                                     ; Syscall number for exit
-        mov rdi, rdi                                                    ; Sets rdi to 0
+        xor rdi, rdi                                                    ; Sets rdi to 0
         syscall                                                         ; Call kernel
