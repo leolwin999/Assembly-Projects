@@ -194,7 +194,7 @@ _close_listening_socket_on_error:
         jmp _exit                                                       ; Jump to exit
 
 _exit:
-        mov rax, 60                                                     ; Syscall number for write
+        mov rax, 60                                                     ; Syscall number for exit
         mov rdi, rdi                                                    ; Sets rdi to 0
         syscall                                                         ; Call kernel
 
