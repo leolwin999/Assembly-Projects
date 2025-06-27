@@ -67,7 +67,7 @@ _start:
 
 
         ; We cleverly push all 16 bytes of this structure (values) onto the stack with a single push instruction
-        push rdx                                                        ; Top of the stack becomes our values pointed by rsi
+        push rdx                                                        ; Top of the stack becomes our values
         mov rsi, rsp                                                    ; rsi now points to the top of the stack
 
         mov rax, 49                                                     ; Syscall number for bind
