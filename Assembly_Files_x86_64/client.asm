@@ -73,7 +73,7 @@ _start:
         mov rdi, r12                                                    ; File descriptor from r12 (socket file descriptor)
 
         mov rdx, 16                                                     ; Size of our struct (values)
-        syscall
+        syscall                                                         ; Call kernel
 
         cmp rax, 0                                                      ; Check connection errors
         jl _connect_error                                               ; If rax < 0, jump to the error handler
