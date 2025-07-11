@@ -42,6 +42,7 @@ _start:
         mov rdx, 0644o                                                  ; 3rd arg: mode (permissions), 'o' is for octal
         syscall                                                         ; Call kernel
 
+        ; Registers are used differently here. Please refer to "purpose_of_registers.md" for more info.
 
                                                                         ; rax will hold the file descriptor or an error
         cmp rax, 0                                                      ; Compare return value in rax with 0
