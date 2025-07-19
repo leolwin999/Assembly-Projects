@@ -7,6 +7,7 @@ section .data
         ; IP address for google.com (142.250.4.100)
         ; In memory, this is stored in little-endian format.
         ; 100.4.250.142 --> 64.04.fa.8e(hex) --> 0x6404fa8e
+        ; dd stands for Define Doubleword
         ip_addr dd 0x6404fa8e
 
 
@@ -74,6 +75,7 @@ _start:
 
         ; Port 80 will be big-endian (network byte order)
         ; 80 = 0x5000 (No need to change for 0x0050, which is little endian)
+        ; Why 80 and not 443(https)? In 80(http), all communication is in plain, unencrypted text. This is simple and easy to work with
         mov word [rdi + 2], 0x5000                              ; sin_port = htons(80) // 2 bytes
         ; Why + 2? Because we have already allocated 2 bytes in sin_family
         ; The htons() function makes sure that numbers are stored in memory in network byte order
@@ -83,10 +85,11 @@ _start:
         mov dword [rdi + 4], eax                                ; sin_addr
 
         mov rax, 42                                             ; Syscall number for connect
-        mov rdi, [socket_fd]                                    ; Socket file descriptor
-        mov rsi, rsp                                            ; Pointer to our sockaddr_in struct
+        mov rdi, [socket_fd]                                    ; Socket file descriptor (The sys_connect syscall requires its "first" argument to be the socket file descriptor)
+                                                                ; rdi's values are struct and rdi's address is socket file descriptor
+        mov rsi, rsp                                            ; Pointer to our sockaddr_in struct (rsp points to the top of the stack) 
         mov rdx, 16                                             ; size of the struct
-        syscall
+        syscall                                                 ; Call kernel
 
 
         add rsp, 16                                             ; Clean up the stack
@@ -104,7 +107,7 @@ _start:
         mov rdi, [socket_fd]                                    ; File descriptor for socket
         mov rsi, request                                        ; The request string
         mov rdx, req_len                                        ; Request string length
-        mov r10, 0                                              ; Flags
+        mov r10, 0                                              ; Flags (use the standard, default behavior)
         syscall                                                 ; Call kernel
 
         mov rax, 1                                              ; Syscall number for write
@@ -118,7 +121,7 @@ _read_loop:
         mov rdi, [socket_fd]                                    ; File descriptor for socket
         mov rsi, response_buf                                   ; Buffer to store data
         mov rdx, 8192                                           ; Max buffer size
-        mov r10, 0                                              ; flags
+        mov r10, 0                                              ; Flags (use the standard, default behavior)
         syscall                                                 ; Call kernel
 
         ; rax now contains the number of bytes received
@@ -155,3 +158,12 @@ _exit_program:
         mov rax, 60                                             ; Syscall number for exit
         xor rdi, rdi                                            ; Exit code 0
         syscall                                                 ; Call kernel
+
+; Summary of steps
+; 1) Make Socket
+; 2) Create Socket
+; 3) Connect
+; 4) Send Request
+; 5) Receive 
+; 6) Close Socket
+; 7) Exit
