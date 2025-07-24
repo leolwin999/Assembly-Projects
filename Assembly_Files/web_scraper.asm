@@ -87,7 +87,7 @@ _start:
         mov rax, 42                                             ; Syscall number for connect
         mov rdi, [socket_fd]                                    ; Socket file descriptor (The sys_connect syscall requires its "first" argument to be the socket file descriptor)
                                                                 ; rdi's values are struct and rdi's address is socket file descriptor
-        mov rsi, rsp                                            ; Pointer to our sockaddr_in struct (rsp points to the top of the stack) 
+        mov rsi, rsp                                            ; Pointer to our sockaddr_in struct (rsp points to the start of our struct) 
         mov rdx, 16                                             ; size of the struct
         syscall                                                 ; Call kernel
 
