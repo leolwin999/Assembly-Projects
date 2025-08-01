@@ -23,10 +23,11 @@ _start:
         mov rsi, input_buffer                                           ; Buffer to store input
         mov rdx, 16                                                     ; Max number of bytes to read
         syscall                                                         ; Call kernel
+                                                                        ; After syscall, rax will hold the number of bytes read
 
         mov rsi, input_buffer                                           ; rsi points to the start of input string
-        mov rbx, 0                                                      ; rbx will hold the final integer value (our counter)
-        mov rcx, rax                                                    ; rcx will hold the length of bytes (rcx is loop counter)
+        mov rbx, 0                                                      ; rbx will hold the final integer value
+        mov rcx, rax                                                    ; rcx will hold the number of bytes read(rcx is loop counter)
         sub rcx, 1                                                      ; Decrement to ignore the newline character at the end
 
 convert_loop:
