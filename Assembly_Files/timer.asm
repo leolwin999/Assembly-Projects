@@ -90,7 +90,7 @@ convert_to_string_loop:
         ; We'll build this struct on the stack.
         sub rsp, 16                                                     ; Reserve 16 bytes space on the stack for struct
         mov qword [rsp], 1                                              ; tv_sec = 1
-        mov qword [rsp+8], 1                                            ; tv_nsec = 0
+        mov qword [rsp+8], 0                                            ; tv_nsec = 0
 
         mov rax, 35                                                     ; Syscall number for sys_nanosleep
         mov rdi, rsp                                                    ; rdi points to our timespec struct on the stack
