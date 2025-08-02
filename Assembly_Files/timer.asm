@@ -2,8 +2,6 @@ section .data
         prompt_msg db "Enter the number to count down (in seconds): ",0 ; Prompt Message
         prompt_msg_len equ $ - prompt_msg                               ; Message Length
 
-        newline db 0x0A                                                 ; Newline character '\n'
-
 section .bss
         input_buffer resb 16                                            ; Buffer to store user input (e.g. "100\n")
         num_buffer resb 20                                              ; Buffer to store numbers for printing
