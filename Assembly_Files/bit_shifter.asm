@@ -14,7 +14,7 @@ _start:
 
 shift_loop:
         movzx eax, byte [rsi]                           ; movzx loads a byte from memory [rsi] into a larger register (eax) and zero-extends it.
-        ; We use a 32-bit register (eax) because there's no direct memory-to-memory 'rol' for single bytes. AL is the lowest 8 bits of RAX/EAX.
+        ; We use a 32-bit register (eax) because there's no direct memory-to-memory 'rol' for single bytes. al is the lowest 8 bits of rax/eax.
 
         ; ROL stands for "Rotate Left". This instruction rotates the bits in the AL register to the left by 1 position. The bit that falls off the left end is wrapped around to the right end. This is a simple form of encryption
         ; For e.g. 1100 is shifted to 1001 
