@@ -1,4 +1,4 @@
-DEFAULT REL                     ;Tell NASM to use RIP-relative addressing by default
+DEFAULT REL                     ; Tell NASM to use RIP-relative addressing by default
 
 section .bss
         buffer resb 20          ; Reserve a 20-byte buffer in memory to hold our string of characters
